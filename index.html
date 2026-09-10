@@ -1,51 +1,54 @@
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leserbrief-Überdaner 5000</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;1,300&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #f5f2eb; --bg2: #ede9e0; --ink: #1a1714; --ink2: #5a5650;
-  --accent: #c0392b; --border: #d4cfc4;
-  --mono: 'DM Mono', monospace; --serif: 'Fraunces', Georgia, serif;
-}
-
-body { background: var(--bg); color: var(--ink); font-family: var(--mono); min-height: 100vh; }
-.page { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
-header { border-bottom: 1.5px solid var(--ink); padding-bottom: 1.2rem; margin-bottom: 2rem; display: flex; align-items: baseline; gap: 1.5rem; flex-wrap: wrap; }
-.logo { font-family: var(--serif); font-size: 28px; font-weight: 600; letter-spacing: -0.5px; line-height: 1; }
-.logo span { color: var(--accent); font-style: italic; }
-.tagline { font-size: 11px; color: var(--ink2); letter-spacing: 0.08em; text-transform: uppercase; }
-.workspace { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.pane-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink2); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-textarea { width: 100%; height: 360px; font-family: var(--mono); font-size: 12px; line-height: 1.7; padding: 14px; background: #fff; color: var(--ink); border: 1px solid var(--border); border-radius: 4px; resize: vertical; transition: border-color 0.15s; }
-textarea:focus { outline: none; border-color: var(--ink); }
-textarea[readonly] { background: var(--bg2); cursor: default; }
-.controls { margin-top: 1.5rem; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-button { font-family: var(--mono); font-size: 12px; padding: 9px 18px; border: 1px solid var(--ink); border-radius: 3px; cursor: pointer; background: transparent; color: var(--ink); transition: all 0.12s; letter-spacing: 0.04em; }
-button:hover { background: var(--ink); color: var(--bg); }
-button.run { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 500; }
-button.run:hover { background: #a93226; border-color: #a93226; }
-.log { font-family: var(--mono); font-size: 11px; line-height: 1.8; color: var(--ink2); background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; max-height: 110px; overflow-y: auto; margin-top: 1.5rem; }
-.char-count { font-size: 10px; color: var(--ink2); }
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,23,20,0.55); backdrop-filter: blur(2px); align-items: center; justify-content: center; z-index: 200; }
-.modal-overlay.show { display: flex; }
-.modal-box { background: var(--bg); border: 1.5px solid var(--ink); border-radius: 6px; padding: 2.5rem 2rem; max-width: 420px; width: 90%; text-align: center; animation: popIn 0.2s ease; }
-@keyframes popIn { from { transform: scale(0.92); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.modal-greeting { font-family: var(--serif); font-size: 22px; font-weight: 300; font-style: italic; margin-bottom: 0.6rem; color: var(--ink); line-height: 1.4; }
-.modal-sub { font-size: 11px; color: var(--ink2); margin-bottom: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
-.modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+:root { --bg:#f5f2eb; --bg2:#ede9e0; --ink:#1a1714; --ink2:#5a5650; --accent:#c0392b; --border:#d4cfc4; --mono:'DM Mono',monospace; --serif:'Fraunces',Georgia,serif; }
+body { background:var(--bg); color:var(--ink); font-family:var(--mono); min-height:100vh; }
+.page { max-width:1100px; margin:0 auto; padding:2.5rem 2rem 4rem; }
+header { border-bottom:1.5px solid var(--ink); padding-bottom:1.2rem; margin-bottom:2rem; display:flex; align-items:baseline; gap:1.5rem; flex-wrap:wrap; }
+.logo { font-family:var(--serif); font-size:28px; font-weight:600; letter-spacing:-0.5px; line-height:1; }
+.logo span { color:var(--accent); font-style:italic; }
+.tagline { font-size:11px; color:var(--ink2); letter-spacing:0.08em; text-transform:uppercase; }
+.workspace { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+@media (max-width:720px){ .workspace { grid-template-columns:1fr; } }
+.pane-label { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink2); margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+textarea { width:100%; height:360px; font-family:var(--mono); font-size:12px; line-height:1.7; padding:14px; background:#fff; color:var(--ink); border:1px solid var(--border); border-radius:4px; resize:vertical; }
+textarea:focus { outline:none; border-color:var(--ink); }
+textarea[readonly] { background:var(--bg2); cursor:default; }
+.controls { margin-top:1.5rem; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+button { font-family:var(--mono); font-size:12px; padding:9px 18px; border:1px solid var(--ink); border-radius:3px; cursor:pointer; background:transparent; color:var(--ink); transition:all .12s; letter-spacing:.04em; }
+button:hover { background:var(--ink); color:var(--bg); }
+button.run { background:var(--accent); color:#fff; border-color:var(--accent); font-weight:500; }
+button.run:hover { background:#a93226; border-color:#a93226; }
+button:disabled { opacity:.5; cursor:wait; }
+.log { font-family:var(--mono); font-size:11px; line-height:1.8; color:var(--ink2); background:var(--bg2); border:1px solid var(--border); border-radius:4px; padding:10px 14px; max-height:140px; overflow-y:auto; margin-top:1.5rem; white-space:pre-wrap; }
+.char-count { font-size:10px; color:var(--ink2); }
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(26,23,20,.55); backdrop-filter:blur(2px); align-items:center; justify-content:center; z-index:200; }
+.modal-overlay.show { display:flex; }
+.modal-box { background:var(--bg); border:1.5px solid var(--ink); border-radius:6px; padding:2.5rem 2rem; max-width:420px; width:90%; text-align:center; animation:popIn .2s ease; }
+@keyframes popIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
+.modal-greeting { font-family:var(--serif); font-size:22px; font-weight:300; font-style:italic; margin-bottom:.6rem; line-height:1.4; }
+.modal-sub { font-size:11px; color:var(--ink2); margin-bottom:1.8rem; letter-spacing:.06em; text-transform:uppercase; }
+.modal-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
 </style>
+</head>
+<body>
 
 <div class="page">
   <header>
     <div class="logo">Leserbrief-<span>Überdaner</span> 5000</div>
-    <div class="tagline">Automatische HTML-Bereinigung · 6 Regeln · sofort fertig</div>
+    <div class="tagline">Vorstufe + 6 Regeln · altes und neues Blogger-Format</div>
   </header>
 
   <div class="workspace">
     <div>
       <div class="pane-label">Eingabe-HTML <span class="char-count" id="in-count">0 Zeichen</span></div>
-      <textarea id="input" placeholder="HTML hier einfügen…" oninput="document.getElementById('in-count').textContent=this.value.length+' Zeichen'"></textarea>
+      <textarea id="input" placeholder="HTML hier einfügen…"></textarea>
     </div>
     <div>
       <div class="pane-label">Ausgabe-HTML <span class="char-count" id="out-count">—</span></div>
@@ -54,9 +57,9 @@ button.run:hover { background: #a93226; border-color: #a93226; }
   </div>
 
   <div class="controls">
-    <button class="run" onclick="transform()">Überdanen →</button>
-    <button onclick="copyOutput()">Kopieren</button>
-    <button onclick="clearAll()">Leeren</button>
+    <button class="run" id="btn-run">Überdanen →</button>
+    <button id="btn-copy">Kopieren</button>
+    <button id="btn-clear">Leeren</button>
   </div>
 
   <div class="log" id="log">Bereit. HTML einfügen und auf „Überdanen" klicken.</div>
@@ -67,107 +70,152 @@ button.run:hover { background: #a93226; border-color: #a93226; }
     <div class="modal-greeting" id="modal-msg"></div>
     <div class="modal-sub">HTML wurde erfolgreich überdant</div>
     <div class="modal-actions">
-      <button onclick="copyOutput(); document.getElementById('modal').classList.remove('show')">Kopieren & schließen</button>
-      <button onclick="document.getElementById('modal').classList.remove('show')">Schließen</button>
+      <button id="btn-copy-close">Kopieren &amp; schließen</button>
+      <button id="btn-close">Schließen</button>
     </div>
   </div>
 </div>
 
 <script>
 const greetings = [
-  "Ein wunderschönes Wochenende!","Schönes WE!","Wochenendeeeee!",
-  "Wunderschöneswochenendillon!","Wochenende ahoi!",
+  "Ein wunderschönes Wochenende!",
+  "Schönes WE!",
+  "Wochenendeeeee!",
+  "Wunderschöneswochenendillon!",
+  "Wochenende ahoi!",
   "W to the O to the C to the H to the E to the N to the E to the N to the D to the E!",
-  "Um das Haben eines schönen Wochenendes wird gebeten.",
-  "Wochenendowski!",
-  "Schööööööönes Wocheneeeeeendeeeee!",
-  "Es ist mir eine Ehre, Ihnen ein angenehmes Wochenende zu wünschen.",
-  "Wochenende olé olé!",
-  "Hab das beste Wochenende seit letztem Wochenende!",
-  "Es sei Ihnen hiermit das Verbringen eines wohlgefälligen Wochenendes anempfohlen.",
-  "In Anbetracht der bevorstehenden arbeitsfreien Tage gestatte ich mir, Ihnen ein zufriedenstellendes Erleben derselben zu wünschen.",
-  "Möge die Inanspruchnahme der kommenden zweiundsiebzig Stunden zu Ihrer vollsten Zufriedenheit gereichen.",
-  "Hiermit sei der Wunsch ausgesprochen, dass das nunmehr anstehende Wochenende sich als ein solches von hinreichender Annehmlichkeit erweisen möge.",
-  "Unter Berücksichtigung der Tatsache, dass sich die Arbeitswoche ihrem Ende zuneigt, sei Ihnen ein erfreuliches Verbringen der nachfolgenden Tage gewünscht.",
-  "Sollten Sie in den kommenden Tagen Gelegenheit zur wochehendlichen Erholung finden, so möge diese von durchschlagendem Erfolg gekrönt sein.",
-  "In Erwartung der nunmehr eintretenden samstäglichen und sonntäglichen Erholungsphase wünsche ich Ihnen ein zweckdienliches Wohlbefinden.",
-  "Es ist mir ein aufrichtiges Bedürfnis, Ihnen meine wohlmeinendsten Wünsche bezüglich der Ausgestaltung des bevorstehenden Wochenendes zu übermitteln.",
-  "Möge sich das Ihnen zur Verfügung stehende Zeitfenster zwischen Freitagabend und Sonntagabend als eines von gehobener Qualität erweisen.",
-  "Gestatten Sie mir, im Hinblick auf die anstehende temporäre Suspendierung der beruflichen Verpflichtungen am Wochenende meine besten Wünsche zu artikulieren."
+  "Um das Haben eines schönen Wochenendes wird gebeten."
 ];
 
-function addLog(msg) {
-  const el = document.getElementById('log');
-  el.textContent += '\n' + msg;
-  el.scrollTop = el.scrollHeight;
+const $ = id => document.getElementById(id);
+function addLog(msg){ const el=$('log'); el.textContent+='\n'+msg; el.scrollTop=el.scrollHeight; }
+function closeModal(){ $('modal').classList.remove('show'); }
+
+function loadDims(url){
+  return new Promise(res=>{
+    const img=new Image();
+    const t=setTimeout(()=>res(null),10000);
+    img.onload=()=>{ clearTimeout(t); res({w:img.naturalWidth,h:img.naturalHeight}); };
+    img.onerror=()=>{ clearTimeout(t); res(null); };
+    img.src=url;
+  });
 }
 
-function transform() {
-  const input = document.getElementById('input').value;
-  if (!input.trim()) { addLog('⚠ Kein HTML eingegeben.'); return; }
+// ---------- VORSTUFE: neues Blogger-Format → altes Blogger-Format ----------
+// Greift nur auf Blöcke mit dem neuen a-Style. Altes HTML: null Treffer, unverändert.
+const NEW_BLOCK = /<div class="separator" style="clear: both;"><a href="([^"]*)" style="display: block; padding: 1em 0; text-align: center; "><img([^>]*?)\/?><\/a><\/div>/g;
 
-  document.getElementById('log').textContent = 'Starte Überdanung…';
-  let html = input;
-  let steps = [];
+async function preStage(html){
+  const blocks=[...html.matchAll(NEW_BLOCK)];
+  if(blocks.length===0) return {html, count:0, ok:0, fail:[]};
 
-  // Regel 1: s320 → s1600
-  const c1 = (html.match(/s320/g) || []).length;
-  html = html.split('s320').join('s1600');
-  if (c1) steps.push('Regel 1 — s320 → s1600: ' + c1 + 'x');
+  let ok=0; const fail=[]; const replacements=[];
+  for(const m of blocks){
+    const full=m[0], href=m[1], attrs=m[2];
+    const get=name=>{ const r=new RegExp(name+'="([^"]*)"').exec(attrs); return r?r[1]:null; };
+    const width=get('width')||'320';
+    const src=get('src')||'';
+    const border=get('border')||'0';
+    let oh=get('data-original-height')||'0';
+    let ow=get('data-original-width')||'0';
+    let newHref=href;
 
-  // Regel 2: width="(\d+)" → width="548"
-  // Nur wenn KEIN "data-original-" davor steht (negative lookbehind)
-  const re2 = /(?<![\w-])width="(\d+)"/gi;
-  const m2 = html.match(re2);
-  html = html.replace(re2, 'width="548"');
-  if (m2) steps.push('Regel 2 — width="…" → width="548": ' + m2.length + 'x');
+    // Bildmaße immer laden (Blogger-Bug: data-original-* steht auf 0)
+    const d=await loadDims(href);
+    if(d && d.w>0 && d.h>0){
+      ow=String(d.w); oh=String(d.h); ok++;
+      const s=Math.max(d.w,d.h); // Blogger-Konvention: sXXX = längste Seite
+      newHref=href.replace(/\/([^\/]+)$/, '/s'+s+'/$1');
+    } else {
+      fail.push(decodeURIComponent(href.split('/').pop()));
+    }
 
-  // Regel 3: height="(\d+)" entfernen
-  // Nur wenn KEIN "data-original-" davor steht
-  const re3 = /(?<![\w-])height="(\d+)"/g;
-  const m3 = html.match(re3);
-  html = html.replace(re3, '');
-  if (m3) steps.push('Regel 3 — height="…" entfernt: ' + m3.length + 'x');
+    const out =
+      '<div class="separator" style="clear: both; text-align: center;">' +
+      '<a href="'+newHref+'" style="margin-left: 1em; margin-right: 1em;">' +
+      '<img border="'+border+'" data-original-height="'+oh+'" data-original-width="'+ow+'" src="'+src+'" width="'+width+'" />' +
+      '</a></div><br />';
+    replacements.push([full,out]);
+  }
+  for(const [a,b] of replacements) html=html.replace(a,b);
+  return {html, count:blocks.length, ok, fail};
+}
 
-  // Regel 4: text-align: center → text-align: left
-  const c4 = (html.match(/text-align: center/g) || []).length;
-  html = html.split('text-align: center').join('text-align: left');
-  if (c4) steps.push('Regel 4 — text-align: center → left: ' + c4 + 'x');
+// ---------- ALTE REGELN 1–6 (unverändert) ----------
+function oldRules(html, steps){
+  const c1=(html.match(/s320/g)||[]).length;
+  html=html.split('s320').join('s1600');
+  if(c1) steps.push('Regel 1 — s320 → s1600: '+c1+'x');
 
-  // Regel 5: style="margin-left: 1em; margin-right: 1em → style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em
-  const re5 = /style="margin-left: 1em; margin-right: 1em/g;
-  const m5 = html.match(re5);
-  html = html.replace(re5, 'style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em');
-  if (m5) steps.push('Regel 5 — margin-left/right → clear+float: ' + m5.length + 'x');
+  const re2=/(?<![\w-])width="(\d+)"/gi; const m2=html.match(re2);
+  html=html.replace(re2,'width="548"');
+  if(m2) steps.push('Regel 2 — width="…" → width="548": '+m2.length+'x');
 
-  // Regel 6: nach ></a></div> eine Leerzeile einfügen
-  const c6 = (html.match(/><\/a><\/div>/g) || []).length;
-  html = html.split('></a></div>').join('></a></div>\n\n');
-  if (c6) steps.push('Regel 6 — Leerzeile nach ></a></div>: ' + c6 + 'x');
+  const re3=/(?<![\w-])height="(\d+)"/g; const m3=html.match(re3);
+  html=html.replace(re3,'');
+  if(m3) steps.push('Regel 3 — height="…" entfernt: '+m3.length+'x');
 
-  if (steps.length === 0) steps.push('Keine Treffer gefunden — HTML unverändert.');
-  steps.forEach(s => addLog('✓ ' + s));
+  const c4=(html.match(/text-align: center/g)||[]).length;
+  html=html.split('text-align: center').join('text-align: left');
+  if(c4) steps.push('Regel 4 — text-align: center → left: '+c4+'x');
+
+  const re5=/style="margin-left: 1em; margin-right: 1em/g; const m5=html.match(re5);
+  html=html.replace(re5,'style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em');
+  if(m5) steps.push('Regel 5 — margin-left/right → clear+float: '+m5.length+'x');
+
+  const c6=(html.match(/><\/a><\/div>/g)||[]).length;
+  html=html.split('></a></div>').join('></a></div>\n\n');
+  if(c6) steps.push('Regel 6 — Leerzeile nach ></a></div>: '+c6+'x');
+
+  return html;
+}
+
+async function transform(){
+  const input=$('input').value;
+  if(!input.trim()){ addLog('⚠ Kein HTML eingegeben.'); return; }
+  const btn=$('btn-run'); btn.disabled=true;
+  $('log').textContent='Starte Überdanung…';
+  let html=input; const steps=[];
+
+  const r=await preStage(html);
+  html=r.html;
+  if(r.count){
+    steps.push('Vorstufe — neues Format konvertiert: '+r.count+' Block/Blöcke · Bildmaße geladen: '+r.ok+'/'+r.count);
+    if(r.fail.length) steps.push('⚠ Maße nicht ladbar (bleiben 0): '+r.fail.join(', '));
+  } else {
+    steps.push('Vorstufe — kein neues Format gefunden, übersprungen');
+  }
+
+  html=oldRules(html, steps);
+
+  steps.forEach(s=>addLog((s.startsWith('⚠')?'':'✓ ')+s));
   addLog('Fertig!');
+  $('output').value=html;
+  $('out-count').textContent=html.length+' Zeichen';
+  btn.disabled=false;
 
-  document.getElementById('output').value = html;
-  document.getElementById('out-count').textContent = html.length + ' Zeichen';
-
-  const msg = greetings[Math.floor(Math.random() * greetings.length)];
-  document.getElementById('modal-msg').textContent = msg;
-  document.getElementById('modal').classList.add('show');
+  $('modal-msg').textContent=greetings[Math.floor(Math.random()*greetings.length)];
+  $('modal').classList.add('show');
 }
 
-function copyOutput() {
-  const val = document.getElementById('output').value;
-  if (!val) { addLog('⚠ Nichts zum Kopieren.'); return; }
-  navigator.clipboard.writeText(val).then(() => addLog('✓ In Zwischenablage kopiert.'));
+function copyOutput(){
+  const val=$('output').value;
+  if(!val){ addLog('⚠ Nichts zum Kopieren.'); return; }
+  navigator.clipboard.writeText(val).then(()=>addLog('✓ In Zwischenablage kopiert.'));
+}
+function clearAll(){
+  $('input').value=''; $('output').value='';
+  $('in-count').textContent='0 Zeichen'; $('out-count').textContent='—';
+  $('log').textContent='Geleert.';
 }
 
-function clearAll() {
-  document.getElementById('input').value = '';
-  document.getElementById('output').value = '';
-  document.getElementById('in-count').textContent = '0 Zeichen';
-  document.getElementById('out-count').textContent = '—';
-  document.getElementById('log').textContent = 'Geleert.';
-}
+$('input').addEventListener('input', e=>{ $('in-count').textContent=e.target.value.length+' Zeichen'; });
+$('btn-run').addEventListener('click', transform);
+$('btn-copy').addEventListener('click', copyOutput);
+$('btn-clear').addEventListener('click', clearAll);
+$('btn-copy-close').addEventListener('click', ()=>{ copyOutput(); closeModal(); });
+$('btn-close').addEventListener('click', closeModal);
+$('modal').addEventListener('click', e=>{ if(e.target===$('modal')) closeModal(); });
 </script>
+</body>
+</html>
