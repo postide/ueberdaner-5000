@@ -104,7 +104,7 @@ function loadDims(url){
 
 // ---------- VORSTUFE: neues Blogger-Format → altes Blogger-Format ----------
 // Greift nur auf Blöcke mit dem neuen a-Style. Altes HTML: null Treffer, unverändert.
-const NEW_BLOCK = /<div class="separator" style="clear: both;"><a href="([^"]*)" style="display: block; padding: 1em 0; text-align: center; "><img([^>]*?)\/?><\/a><\/div>/g;
+const NEW_BLOCK = /<div class="separator" style="clear: both;\s*">\s*<a href="([^"]*)" style="display: block;\s*padding: 1em 0;\s*text-align: center;?\s*">\s*<img([^>]*?)\/?>\s*<\/a>\s*<\/div>/g;
 
 async function preStage(html){
   const blocks=[...html.matchAll(NEW_BLOCK)];
@@ -170,6 +170,15 @@ function oldRules(html, steps){
   return html;
 }
 
+// ---------- REGEL 7: href = src (bei jedem <a href><img src>-Paar) ----------
+function hrefEqualsSrc(html, steps){
+  let n=0;
+  const re=/(<a\s+[^>]*?href=")([^"]*)("[^>]*>\s*<img\s+[^>]*?src=")([^"]*)(")/g;
+  html=html.replace(re,(m,p1,href,p3,src,p5)=>{ if(href!==src) n++; return p1+src+p3+src+p5; });
+  if(n) steps.push('Regel 7 — href = src gesetzt: '+n+'x');
+  return html;
+}
+
 async function transform(){
   const input=$('input').value;
   if(!input.trim()){ addLog('⚠ Kein HTML eingegeben.'); return; }
@@ -187,6 +196,7 @@ async function transform(){
   }
 
   html=oldRules(html, steps);
+  html=hrefEqualsSrc(html, steps);
 
   steps.forEach(s=>addLog((s.startsWith('⚠')?'':'✓ ')+s));
   addLog('Fertig!');
