@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -118,14 +119,13 @@ async function preStage(html){
     const border=get('border')||'0';
     let oh=get('data-original-height')||'0';
     let ow=get('data-original-width')||'0';
-    let newHref=href;
+    // href = src-URL. Regel 1 macht daraus anschließend s1600.
+    const newHref=src;
 
-    // Bildmaße immer laden (Blogger-Bug: data-original-* steht auf 0)
+    // Bildmaße laden (Blogger-Bug: data-original-* steht auf 0)
     const d=await loadDims(href);
     if(d && d.w>0 && d.h>0){
       ow=String(d.w); oh=String(d.h); ok++;
-      const s=Math.max(d.w,d.h); // Blogger-Konvention: sXXX = längste Seite
-      newHref=href.replace(/\/([^\/]+)$/, '/s'+s+'/$1');
     } else {
       fail.push(decodeURIComponent(href.split('/').pop()));
     }
