@@ -92,43 +92,25 @@ const $ = id => document.getElementById(id);
 function addLog(msg){ const el=$('log'); el.textContent+='\n'+msg; el.scrollTop=el.scrollHeight; }
 function closeModal(){ $('modal').classList.remove('show'); }
 
-function loadDims(url){
-  return new Promise(res=>{
-    const img=new Image();
-    const t=setTimeout(()=>res(null),10000);
-    img.onload=()=>{ clearTimeout(t); res({w:img.naturalWidth,h:img.naturalHeight}); };
-    img.onerror=()=>{ clearTimeout(t); res(null); };
-    img.src=url;
-  });
-}
-
 // ---------- VORSTUFE: neues Blogger-Format → altes Blogger-Format ----------
 // Greift nur auf Blöcke mit dem neuen a-Style. Altes HTML: null Treffer, unverändert.
 const NEW_BLOCK = /<div class="separator" style="clear: both;\s*">\s*<a href="([^"]*)" style="display: block;\s*padding: 1em 0;\s*text-align: center;?\s*">\s*<img([^>]*?)\/?>\s*<\/a>\s*<\/div>/g;
 
-async function preStage(html){
+function preStage(html){
   const blocks=[...html.matchAll(NEW_BLOCK)];
-  if(blocks.length===0) return {html, count:0, ok:0, fail:[]};
+  if(blocks.length===0) return {html, count:0};
 
-  let ok=0; const fail=[]; const replacements=[];
+  const replacements=[];
   for(const m of blocks){
-    const full=m[0], href=m[1], attrs=m[2];
+    const full=m[0], attrs=m[2];
     const get=name=>{ const r=new RegExp(name+'="([^"]*)"').exec(attrs); return r?r[1]:null; };
     const width=get('width')||'320';
     const src=get('src')||'';
     const border=get('border')||'0';
-    let oh=get('data-original-height')||'0';
-    let ow=get('data-original-width')||'0';
+    const oh=get('data-original-height')||'0';
+    const ow=get('data-original-width')||'0';
     // href = src-URL. Regel 1 macht daraus anschließend s1600.
     const newHref=src;
-
-    // Bildmaße laden (Blogger-Bug: data-original-* steht auf 0)
-    const d=await loadDims(href);
-    if(d && d.w>0 && d.h>0){
-      ow=String(d.w); oh=String(d.h); ok++;
-    } else {
-      fail.push(decodeURIComponent(href.split('/').pop()));
-    }
 
     const out =
       '<div class="separator" style="clear: both; text-align: center;">' +
@@ -138,7 +120,7 @@ async function preStage(html){
     replacements.push([full,out]);
   }
   for(const [a,b] of replacements) html=html.replace(a,b);
-  return {html, count:blocks.length, ok, fail};
+  return {html, count:blocks.length};
 }
 
 // ---------- ALTE REGELN 1–6 (unverändert) ----------
@@ -179,18 +161,17 @@ function hrefEqualsSrc(html, steps){
   return html;
 }
 
-async function transform(){
+function transform(){
   const input=$('input').value;
   if(!input.trim()){ addLog('⚠ Kein HTML eingegeben.'); return; }
   const btn=$('btn-run'); btn.disabled=true;
   $('log').textContent='Starte Überdanung…';
   let html=input; const steps=[];
 
-  const r=await preStage(html);
+  const r=preStage(html);
   html=r.html;
   if(r.count){
-    steps.push('Vorstufe — neues Format konvertiert: '+r.count+' Block/Blöcke · Bildmaße geladen: '+r.ok+'/'+r.count);
-    if(r.fail.length) steps.push('⚠ Maße nicht ladbar (bleiben 0): '+r.fail.join(', '));
+    steps.push('Vorstufe — neues Format konvertiert: '+r.count+' Block/Blöcke');
   } else {
     steps.push('Vorstufe — kein neues Format gefunden, übersprungen');
   }
