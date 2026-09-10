@@ -178,6 +178,8 @@ function transform(){
 
   html=oldRules(html, steps);
   html=hrefEqualsSrc(html, steps);
+  // <br /> direkt hinter </a></div>, Leerzeile danach
+  html=html.split('></a></div>\n\n<br />').join('></a></div><br />\n\n');
 
   steps.forEach(s=>addLog((s.startsWith('⚠')?'':'✓ ')+s));
   addLog('Fertig!');
